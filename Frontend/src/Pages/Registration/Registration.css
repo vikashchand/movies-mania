@@ -1,0 +1,210 @@
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../../assets/background.png");
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal {
+    width: 100%;
+    /* height: 60px; */
+    background: rgba(51, 51, 51, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 0.4s;
+  }
+  .modal-container {
+    display: flex;
+    max-width: 60vw;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    position: absolute;
+    color: #4d1818;
+    transition-duration: 0.3s;
+    background-image: url("../../assets/background.png");
+  
+  }
+  .modal-title {
+    margin: 0;
+    font-weight: 400;
+    color: #110202;
+  }
+  .form-error {
+    font-size: 10px;
+    color: #a03f3f;
+  }
+  .modal-desc {
+    margin: 6px 0 30px 0;
+  }
+  .modal-left {
+    padding: 60px 30px 20px;
+    background-image: url("../../assets/background.png");
+    flex: 1.5;
+    transition-duration: 0.5s;
+    opacity: 1;
+  }
+
+  .modal-right {
+    flex: 2;
+    font-size: 0;
+    transition: 0.3s;
+    overflow: hidden;
+  }
+  .modal-right img {
+    width: 100%;
+    height: 100%;
+    transform: scale(1);
+    -o-object-fit: cover;
+    object-fit: cover;
+    transition-duration: 1.2s;
+  }
+
+
+  .heading-tab {
+    background-color: #bcbcca;
+    color: rgb(86, 15, 15);
+    padding: 0px;
+    text-align: center;
+  position: fixed;
+    width: 100%;
+    z-index: 90000;
+  
+    
+  }
+  
+  .heading-tab h1 {
+    font-size: 17px;
+    font-weight: bold;
+  }
+  
+  .modal.is-open .modal-left {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 0.1s;
+  }
+  .modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .modal-buttons a {
+    color: rgba(51, 51, 51, 0.6);
+    font-size: 14px;
+  }
+
+  .sign-up {
+    margin: 60px 0 0;
+    font-size: 14px;
+    text-align: center;
+  }
+  .sign-up a {
+    color: #8c7569;
+  }
+
+
+            
+  .input-button  {
+    background-image: linear-gradient(to right, #000000 0%, #53346D  51%, #000000  100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: rgb(255, 246, 246);            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+  }
+
+  .input-button:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+ 
+  .button  {
+    background-image: linear-gradient(to right, #000000 0%, #53346D  51%, #000000  100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+  }
+
+  .button:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+ 
+  .input-label {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 1000;
+    letter-spacing: 0.7px;
+    color: #080000;
+    transition: 0.3s;
+  }
+
+  .input-block {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 0px 0px;
+ 
+    border-radius: 4px;
+    margin-bottom: 20px;
+    align-items: center;
+    transition: 0.3s;
+    
+  }
+  .input-block input {
+   width: 90%;
+    font-size: 16px;
+    background-image: url("../../assets/background.png");
+    background-color: rgb(255, 241, 255);
+    color: rgb(24, 2, 2);
+  }
+
+  .input-block input::-moz-placeholder {
+    color: #220202;
+    opacity: 1;
+  }
+  .input-block input:-ms-input-placeholder {
+    color: #f0eaea;
+    opacity: 1;
+  }
+  .input-block input::placeholder {
+    color: #1b0202;
+    opacity: 1;
+  }
+  .input-block:focus-within {
+    border-color: #f8f6f5;
+  }
+  .input-block:focus-within .input-label {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  @media (max-width: 750px) {
+    .modal-container {
+      max-width: 90vw;
+    }
+
+    .modal-right {
+      display: none;
+    }
+  }
