@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Audit.css';
+import baseUrl from '../../config';
 
 const Audit = () => {
   const [adminPowersLogs, setAdminPowersLogs] = useState([]);
@@ -8,9 +9,11 @@ const Audit = () => {
   const [auditLogs, setAuditLogs] = useState([]);
   const [selectedTable, setSelectedTable] = useState('');
 
+
+  
   const fetchAuditLogs = async (tableName) => {
     try {
-      const response = await axios.get(`https://email-marketing-vikash.vercel.app/user/${tableName}`);
+      const response = await axios.get(`${baseUrl}user/${tableName}`);
       if (tableName === 'adminpowersaudit') {
         setAdminPowersLogs(response.data);
         setCustomersLogs([]);

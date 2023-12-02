@@ -14,6 +14,10 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  police_station: {
+    type: String,
+    default:'Null',
+  },
   password: {
     type: String,
     required: true,

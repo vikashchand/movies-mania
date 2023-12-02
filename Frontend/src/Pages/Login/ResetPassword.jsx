@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import baseUrl from '../../config';
 const initialValues = {
   email: '',
 };
@@ -30,12 +30,12 @@ const ResetPassword = () => {
       resetPasswordHandle(); // Call the function to handle password reset
     },
   });
-
-
+  
+ 
 
   const resetPasswordHandle = () => {
-    axios
-      .post('https://email-marketing-vikash.vercel.app/user/forget-Password', {
+    axios.post(`${baseUrl}user/forget-Password`,
+    {
         email: values.email,
       })
       .then((response) => {

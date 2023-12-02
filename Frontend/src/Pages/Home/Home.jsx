@@ -4,18 +4,18 @@ import { Routes, Route } from 'react-router-dom';
 import About from '../about/About';
 import SideeNav from '../../components/SideeNav';
 import Task from '../tasks/Task';
-//import jwtDecode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 import ManageUsers from '../manage users/ManageUsers';
 import CustomerDetails from '../Customers/CustomerDetails';
 import LandingPage from '../LandingPage/LandingPage';
 import Audit from '../Audit/Audit';
 
 const Home = () => {
-  // const token = localStorage.getItem('userInfo');
-  // let decodedToken = jwtDecode(token);
-  // console.log(decodedToken, 'decodedToken');
-  // const role = decodedToken.data.is_admin;
-  // console.log(role, 'ghg');
+  const token = localStorage.getItem('userInfo');
+  let decodedToken = jwtDecode(token);
+  console.log(decodedToken, 'decodedToken');
+   const role = decodedToken.data.is_admin;
+ console.log(role, 'ghg');
   return (
     <div>
       

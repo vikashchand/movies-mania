@@ -7,6 +7,7 @@ import '../Registration/Registration.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import baseUrl from '../../config';
 import { useNavigate } from 'react-router-dom';
 import work from '../../assets/tamil.jpg';
 const initialValues = {
@@ -33,8 +34,7 @@ const Login = () => {
   });
 
   const loginHandle = () => {
-    axios
-      .post('https://email-marketing-vikash.vercel.app/user/login',{
+    axios.post(`${baseUrl}user/login`,{
         identifier: values.identifier,  // Add the identifier value here
   password: values.password
       })

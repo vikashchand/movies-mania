@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Registration.css'
 import axios from 'axios';
+import baseUrl from '../../config';
 import work from '../../assets/police.png';
 
 const initialValues = {
@@ -28,7 +29,7 @@ const Registration = () => {
  
 
   const signupHandle =()=>{
-    axios.post('https://email-marketing-vikash.vercel.app/user/register',{
+    axios.post(`${baseUrl}user/register`,{
       username:values.username,email:values.email,password:values.password
     }).then((data)=>{
       if(data.data.status===200){

@@ -363,6 +363,26 @@ const updateUserAccountStatus = async (req, res) => {
   }
 };
 
+const updatePoliceStation = async (req, res) => {
+  const { id } = req.params;
+  const { police_station } = req.body;
+
+  try {
+    // Check if id is a valid ObjectId
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: 'Invalid user ID' });
+    }
+
+    await User.updateOne({ _id: id }, { police_station });
+    res.json({ message: 'Police station updated successfully' });
+  } catch (error) {
+    console.error('Error updating police station:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+
+
 const updatecustomerStatus = async (req, res) => {
   const { id } = req.params;
   const { status } = req.body;
@@ -922,6 +942,6 @@ const customers = async (req, res) => {
         
         
         userSignup, getLoggedInUserEmail ,verifyMail,deleteUser,usersList,customerList,updateUserAccountStatus,updatecustomerStatus
-        ,fetchTemp,newTemp,updateTemp,DeleteTemp,audit,adminpowersaudit,customers
+        ,fetchTemp,newTemp,updateTemp,DeleteTemp,audit,adminpowersaudit,customers,updatePoliceStation
       
       };

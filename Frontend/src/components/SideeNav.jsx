@@ -1,7 +1,7 @@
 
 
 import React,{useState} from 'react';
-//import jwtDecode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 import { NavLink } from 'react-router-dom';
 import './SideeNav.css'; // Import the CSS file
 import { FaBars } from 'react-icons/fa';
@@ -19,15 +19,15 @@ const SideeNav = () => {
 
  // const navigate = useNavigate();
  const [isNavOpen, setIsNavOpen] = useState(false);
-  // const token = localStorage.getItem('userInfo');
-  // let decodedToken = jwtDecode(token);
-  // const role = decodedToken.data.is_admin;
-  // console.log(role, 'gg');
+ const token = localStorage.getItem('userInfo');
+ let decodedToken = jwtDecode(token);
+ const role = decodedToken.data.is_admin;
+ console.log(role, 'gg');
 
 
 
   const handleLogout = () => {
-    //localStorage.removeItem('userInfo');
+   localStorage.removeItem('userInfo');
     window.location.href = '/login';
   };
   const toggleNav = () => {
