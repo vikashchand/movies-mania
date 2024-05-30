@@ -38,7 +38,7 @@ const UserSchema = new mongoose.Schema({
   },
   account_status: {
     type: String,
-    default:'inactive',
+    default:'active',
   },
   created_at: {
     type: Date,
