@@ -27,7 +27,7 @@ const UserSchema = new mongoose.Schema({
   },
   is_admin: {
     type: Number,
-    default: '0'
+    default: '1'
   },
   is_verified: {
     type: Number,
@@ -38,7 +38,7 @@ const UserSchema = new mongoose.Schema({
   },
   account_status: {
     type: String,
-    default:'active',
+    default:'inactive',
   },
   created_at: {
     type: Date,
