@@ -180,7 +180,7 @@ const sendWelcomeEmail = async (email) => {
       // Send verification mail
       const mailSubject = 'Mail verification';
       const randomToken = randomstring.generate();
-      const content = `<p>Hi ${req.body.username},</p><p>Please click on the link to verify your email:</p><a href="https://email-marketing-vikash.vercel.app/mail-verification?token=${randomToken}">Click here</a>`;
+      const content = `<p>Hi ${req.body.username},</p><p>Please click on the link to verify your email:</p><a href="https://manasmoviebackend.vercel.app/mail-verification?token=${randomToken}">Click here</a>`;
       await sendDMail(req.body.email, mailSubject, content);
   
       // Update user token in the database
