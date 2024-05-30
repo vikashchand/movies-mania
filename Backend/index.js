@@ -25,7 +25,7 @@ const listRoutes = require('./Routes/lists');
 
 app.use(express.json());
 const corsOptions = {
-   origin: 'http://localhost:3000',
+   origin: 'https://moviemanas.vercel.app',
    credentials: true,
    optionSuccessStatus: 200,
  };
