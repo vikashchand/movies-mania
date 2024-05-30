@@ -228,7 +228,7 @@ const sendWelcomeEmail = async (email) => {
                 </head>
                 <body>
                   <p>Your email has been verified</p>
-                  <a href="https://email-marketing-software.vercel.app/login">Go to Login</a>
+                  <a href="https://moviemanas.vercel.app/login">Go to Login</a>
                 </body>
               </html>
             `;
@@ -275,7 +275,7 @@ const forgetPassword = async (req, res) => {
     if (user) {
       const mailSubject = 'Forget Password';
       const randomToken = randomstring.generate();
-      const content = `<p>Hi ${user.username}</p><p>Please click on the link to reset your password:</p><a href="https://email-marketing-vikash.vercel.app/forget-Password?token=${randomToken}">Click here</a>`;
+      const content = `<p>Hi ${user.username}</p><p>Please click on the link to reset your password:</p><a href="https://manasmoviebackend.vercel.app/forget-Password?token=${randomToken}">Click here</a>`;
       await sendDMail(email, mailSubject, content);
 
       await PasswordReset.deleteOne({ email });
@@ -568,7 +568,7 @@ const resetPasswordPost = async (req, res) => {
             </head>
             <body>
               <p>Your password has been changed successfully</p>
-              <a href="https://email-marketing-software.vercel.app/login">Login</a>
+              <a href="https://moviemanas.vercel.app/login">Login</a>
             </body>
           </html>
         `;
