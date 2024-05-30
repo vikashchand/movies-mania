@@ -3,12 +3,15 @@ import './Home.css';
 import { Routes, Route } from 'react-router-dom';
 import About from '../about/About';
 import SideeNav from '../../components/SideeNav';
-import Task from '../tasks/Task';
+
 import jwtDecode from 'jwt-decode';
-import ManageUsers from '../manage users/ManageUsers';
-import CustomerDetails from '../Customers/CustomerDetails';
+
+
 import LandingPage from '../LandingPage/LandingPage';
-import Audit from '../Audit/Audit';
+
+import Search from '../Search/Search';
+import Playlist from '../Search/Playlist';
+import Private from '../Search/Private';
 
 const Home = () => {
   const token = localStorage.getItem('userInfo');
@@ -25,19 +28,15 @@ const Home = () => {
       </div>
       <div className="content-container">
       <div className="heading-tab">
-        <h1>Tamil Nadu Police Portal</h1>
+        <h1>Manas movie Portal</h1>
       </div>
         <Routes>
           <Route path="/LandingPage" element={<LandingPage />} />
           <Route path="/about" element={<About />} />
-          <Route path="/customers" element={<CustomerDetails />} />
-          {(
-            <>
-              <Route path="/task" element={<Task />} />
-              <Route path="/employees" element={<ManageUsers />} />
-              <Route path="/audit" element={<Audit/>} />
-            </>
-          )}
+          <Route path="/search" element={<Search />} />
+          <Route path="/public" element={<Playlist/>} />
+          <Route path="/private" element={<Private/> } />
+          
         </Routes>
       </div>
       </div>

@@ -47,7 +47,7 @@ const Registration = () => {
     <>
     <div >
     <div className="heading-tab">
-    <h1>Tamil Nadu Police Portal</h1>
+    <h1>Manas movie Portal</h1>
   </div>
     <div className="container">
     

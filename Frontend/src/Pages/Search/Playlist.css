@@ -1,0 +1,156 @@
+.playlist {
+    margin: 0px auto;
+    padding: 10px;
+    width: 90%;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   
+  }
+  
+  .playlist h1 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .playlist-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+
+  }
+  
+  .playlist-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .playlist-card h2 {
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    margin: 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .movies {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .movie {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .number {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .title {
+    font-weight: bold;
+  }
+  
+  .year {
+    color: #888;
+  }
+  
+  .playlistbtn{
+    padding: 5px ;
+    font-size: 10px;
+  }
+
+
+
+  @media (max-width: 768px) {
+
+
+
+
+.playlist {
+    margin: 0px auto;
+    padding: 10px;
+    width: 90%;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   
+  }
+  
+  .playlist h1 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .playlist-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 2fr));
+    grid-gap: 10px;
+
+   
+
+  }
+  
+  .playlist-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .playlist-card h2 {
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    margin: 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+
+  .playlist-card span{
+    font-size: 10px;
+  }
+  .movies {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .movie {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .number {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .title {
+    font-weight: bold;
+  }
+  
+  .year {
+    color: #888;
+  }
+  
+  .playlistbtn{
+    padding: 5px ;
+    font-size: 10px;
+  }
+
+
+
+
+
+  }

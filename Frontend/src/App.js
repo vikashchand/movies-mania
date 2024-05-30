@@ -6,10 +6,8 @@ import Login from './Pages/Login/Login';
 import Home from './Pages/Home/Home';
 import NotFound from './Pages/NotFound';
 
-import Task from './Pages/tasks/Task';
 
 import ResetPassword from './Pages/Login/ResetPassword';
-import Fir from './Pages/Fir/Fir';
 
 
 
@@ -25,8 +23,8 @@ function App() {
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/home/*" element={<Home />} />
       
-      <Route path="/temp/*" element={<Task/>} />
-      <Route path="/fir" element={ <Fir/> } />
+      
+    
       <Route path="*" element={<NotFound />} /> {/* Add a catch-all route */}
     </Routes>
     

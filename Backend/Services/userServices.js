@@ -10,10 +10,6 @@ const bcrypt=require('bcryptjs')
 const jwt =require('jsonwebtoken')
 const SECURITYKEY=process.env.SECURITYKEY
 const User = require('../models/User');
-const Audit = require('../models/Audit');
-const Adminpowersaudit = require('../models/AdminPowersAudit');
-const Customer = require('../models/Customer');
-const Template = require('../models/Template');
 const PasswordReset = require('../models/passwordReset');
 
 const fs = require('fs');
@@ -28,6 +24,7 @@ const { get } = require('http');
 let loggedInUserEmail;
 
 
+const List = require('../models/List');
 
 const sendWelcomeEmail = async (email) => {
   try {
@@ -65,26 +62,6 @@ const sendWelcomeEmail = async (email) => {
   
 
 
-  const auditLog = async (actor, type) => {
-    const action = (type === 'login') ? 'User login' : 'User signup';
-    const time = new Date().toISOString();
-  
-    try {
-      const auditEntry = new Audit({
-        actor,
-        type,
-        action,
-        time,
-      });
-  
-      await auditEntry.save();
-      console.log('Audit log saved successfully');
-    } catch (error) {
-      console.error('Error saving audit log:', error);
-    }
-  };
-  
- 
   
 
 
@@ -139,7 +116,7 @@ const sendWelcomeEmail = async (email) => {
        
        
   
-          await auditLog(data2.email, 'login');
+         
         
         } else {
           res.json({
@@ -209,8 +186,7 @@ const sendWelcomeEmail = async (email) => {
       // Update user token in the database
       await User.updateOne({ email: req.body.email }, { token: randomToken });
 
-          // Log signup action to audit log
-    // await auditLog(email, 'signup');
+     
 
     res.json({
       status: 200,
@@ -232,29 +208,7 @@ const sendWelcomeEmail = async (email) => {
       };
 
 
-      // const verifyMail = async (req, res) => {
-      //   const token = req.query.token;
       
-      //   try {
-      //     const user = await User.findOne({ token });
-      
-      //     if (user) {
-      //       user.token = null;
-      //       user.is_verified = 1;
-      //       await user.save();
-      
-      //       return res.render('mail-verification', {
-      //         message: 'Your email has been verified',
-      //         loginLink: 'https://email-marketing-software.vercel.app/login',
-      //       });
-      //     } else {
-      //       return res.render('404');
-      //     }
-      //   } catch (error) {
-      //     console.log(error.message);
-      //     // Handle error and return appropriate response
-      //   }
-      // };
       
       const verifyMail = async (req, res) => {
         const token = req.query.token;
@@ -303,202 +257,14 @@ const sendWelcomeEmail = async (email) => {
 
 
 
-      const usersList = async (req, res) => {
-        try {
-          const users = await User.find();
-          res.json(users);
-        } catch (error) {
-          console.error('Error fetching users:', error);
-          res.status(500).json({ error: 'Internal server error' });
-        }
-      };
-      
-
-
-      const customerList = async (req, res) => {
-        try {
-          const customers = await Customer.find();
-          res.json(customers);
-        } catch (error) {
-          console.error('Error fetching customers:', error);
-          res.status(500).json({ error: 'Internal server error' });
-        }
-      };
-      
-
-
-
-const deleteUser = async (req, res) => {
-  const { id } = req.params;
-
-  try {
-    // Check if id is a valid ObjectId
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ error: 'Invalid user ID' });
-    }
-
-    await User.deleteOne({ _id: id });
-    res.json({ message: 'User deleted successfully' });
-  } catch (error) {
-    console.error('Error deleting user:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-};
-
-const updateUserAccountStatus = async (req, res) => {
-  const { id } = req.params;
-  const { account_status } = req.body;
-
-  try {
-    // Check if id is a valid ObjectId
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ error: 'Invalid user ID' });
-    }
-
-    await User.updateOne({ _id: id }, { account_status });
-    res.json({ message: 'Account status updated successfully' });
-  } catch (error) {
-    console.error('Error updating account status:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-};
-
-const updatePoliceStation = async (req, res) => {
-  const { id } = req.params;
-  const { police_station } = req.body;
-
-  try {
-    // Check if id is a valid ObjectId
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ error: 'Invalid user ID' });
-    }
-
-    await User.updateOne({ _id: id }, { police_station });
-    res.json({ message: 'Police station updated successfully' });
-  } catch (error) {
-    console.error('Error updating police station:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-};
-
-
-
-const updatecustomerStatus = async (req, res) => {
-  const { id } = req.params;
-  const { status } = req.body;
-
-  try {
-    // Check if id is a valid ObjectId
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ error: 'Invalid customer ID' });
-    }
-
-    const customer = await Customer.findOneAndUpdate({ _id: id }, { status }, { new: true });
-    if (!customer) {
-      return res.status(404).json({ error: 'Customer not found' });
-    }
-
-    res.json({ message: 'Account status updated successfully' });
-  } catch (error) {
-    console.error('Error updating account status:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-};
+   
+     
 
 
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-// const forgetPassword = async (req, res) => {
-//   try {
-//     const email = req.body.email;
-//     const user = await User.findOne({ email });
-
-//     if (user) {
-//       const mailSubject = 'Forget Password';
-//       const randomToken = randomstring.generate();
-//       const content = `<p>Hi ${user.username}</p><p>Please click on the link to reset your password:</p><a href="https://email-marketing-vikash.vercel.app/forget-Password?token=${randomToken}">Click here</a>`;
-//      await  sendDMail(email, mailSubject, content);
-
-//       await PasswordReset.deleteOne({ email });
-//       await PasswordReset.create({ email, token: randomToken });
-
-//       return res.status(200).json({ status: 200, message: 'Reset email has been sent to your email address' });
-//     }
-
-//     return res.status(404).json({ status: 404, message: 'Email not found' });
-//   } catch (error) {
-//     console.log(error);
-//     return res.status(500).json({ status: 500, message: 'Internal server error' });
-//   }
-// };
-
- 
-
-// const resetPassword = async (req, res) => {
-//   try {
-//     const token = req.query.token;
-//     if (token === undefined) {
-//       res.render('404.ejs');
-//       return;
-//     }
-
-//     const passwordReset = await PasswordReset.findOne({ token });
-
-//     if (passwordReset) {
-//       const user = await User.findOne({ email: passwordReset.email });
-
-//       if (user) {
-//         res.render('reset-password.ejs', { user });
-//         return;
-//       }
-//     }
-
-//     res.render('404.ejs');
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
-
-// const resetPasswordPost = async (req, res) => {
-//   try {
-//     const updatedTime = new Date().toISOString("en-US", { timeZone: "Asia/Kolkata" });
-//     if (req.body.password !== req.body.confirm_password) {
-//       res.render('reset-password.ejs', { error_message: 'Password does not match', user: { id: req.body.user_id, email: req.body.email } });
-//       return;
-//     }
-
-//     const user = await User.findById(req.body.user_id);
-
-//     if (user) {
-//       bcrypt.hash(req.body.confirm_password, 10, async (err, hash) => {
-//         if (err) {
-//           console.log(err);
-//           return;
-//         }
-
-//         await PasswordReset.deleteOne({ email: req.body.email });
-//         user.password = hash;
-//         user.updated_at = updatedTime;
-//         await user.save();
-
-//         res.render('message', {
-//           message: 'Your password has been changed successfully',
-//           loginLink: 'https://email-marketing-software.vercel.app/login'
-//         });
-//       });
-//     } else {
-//       res.render('404');
-//     }
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
-
-////////////////////////////////jai jaiii
 
 
 const forgetPassword = async (req, res) => {
@@ -815,125 +581,43 @@ const resetPasswordPost = async (req, res) => {
     console.log(error.message);
   }
 };
-// GET request to fetch all templates
-const fetchTemp = async (req, res) => {
+
+
+
+
+
+
+
+
+
+
+const addMovieToList = async (req, res) => {
+  const { listName } = req.params;
+  const { imdbID, name, year, type } = req.body;
+
+  console.log('Received request to add movie to list:', listName, imdbID, name, year, type);
+
   try {
-    const templates = await Template.find({});
-    res.json(templates);
+    let list = await List.findOne({ listName: listName });
+    if (!list) {
+      console.log('List not found, creating new list...');
+      // If the list does not exist, create a new one
+      list = new List({ listName: listName });
+    }
+
+    // Push the movie to the movies array in the list
+    list.movies.push({ imdbID, name, year, type });
+
+    // Save the updated list
+    await list.save();
+
+    console.log('Movie added to list successfully:', list);
+    res.json(list);
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error('Error adding movie to list:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
-
-// POST request to create a new template
-const newTemp = async (req, res) => {
-  try {
-    const { body, type } = req.body;
-    const email = loggedInUserEmail;
-
-    // Insert the audit record
-    const audit = new Adminpowersaudit({ email, type:"creating", template_name: type,time:Date.now()});
-    await audit.save();
-
-    
-
-    // Insert the template record
-    const template = new Template({ body, type });
-    await template.save();
-
-    res.sendStatus(201);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
-
-// PUT request to update a template
-const updateTemp = async (req, res) => {
-  try {
-    const { body, type ,templateId} = req.body;
-    const email = loggedInUserEmail;
-   
-    // Insert the audit record
-    const audit = new Adminpowersaudit({ email, type: 'updating', template_name: type,time:Date.now() });
-    await audit.save();
-
-   
-    // Update the template record
-   await  Template.findByIdAndUpdate(templateId, { body,type });
-  
-   
-    //console.log('Executing SQL Query:', template);
-
-    res.sendStatus(201);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
-
-// DELETE request to delete a template
-const DeleteTemp = async (req, res) => {
-  try {
-   
-    const email = loggedInUserEmail;
-    
-    const templateId = req.params.id;
-
-    const {  type } = req.body;
-
-    // Insert the audit record
-    //const audit = new Adminpowersaudit({ email, type: 'Deleting', template_name: type });
-    const audit = new Adminpowersaudit({ email, type: 'Deleting', template_name: type ,time:Date.now()});
-
-    await audit.save();
-
-  
-    // Delete the template record
-    await Template.findByIdAndDelete(templateId);
-
-    res.sendStatus(201);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
-
-// Fetch audit logs
-const audit = async (req, res) => {
-  try {
-    const auditLogs = await Audit.find({});
-    res.json(auditLogs);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Failed to fetch audit logs' });
-  }
-};
-
-// Fetch admin powers audit logs
-const adminpowersaudit = async (req, res) => {
-  try {
-    const adminAuditLogs = await Adminpowersaudit.find({});
-   
-    res.json(adminAuditLogs);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Failed to fetch admin powers audit logs' });
-  }
-};
-
-// Fetch customers
-const customers = async (req, res) => {
-  try {
-    const customers = await Customer.find({});
-    res.json(customers);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Failed to fetch customers' });
-  }
-};
-
 
 
 
@@ -941,7 +625,7 @@ const customers = async (req, res) => {
       module.exports = { userLogin, forgetPassword,resetPasswordPost,resetPassword,
         
         
-        userSignup, getLoggedInUserEmail ,verifyMail,deleteUser,usersList,customerList,updateUserAccountStatus,updatecustomerStatus
-        ,fetchTemp,newTemp,updateTemp,DeleteTemp,audit,adminpowersaudit,customers,updatePoliceStation
+        userSignup, getLoggedInUserEmail ,verifyMail,
+addMovieToList
       
       };

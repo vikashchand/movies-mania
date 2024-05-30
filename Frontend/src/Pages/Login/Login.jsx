@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import baseUrl from '../../config';
 import { useNavigate } from 'react-router-dom';
-import work from '../../assets/tamil.jpg';
+import work from '../../assets/police.png';
 const initialValues = {
   identifier: '',
   password: '',
@@ -55,7 +55,7 @@ const Login = () => {
     <>
 
     <div className="heading-tab">
-    <h1>Tamil Nadu Police Portal</h1>
+    <h1>Manas Movie </h1>
   </div>
       <div className="container">
         <div className="modal">

@@ -4,11 +4,16 @@ import React,{useState} from 'react';
 import jwtDecode from 'jwt-decode';
 import { NavLink } from 'react-router-dom';
 import './SideeNav.css'; // Import the CSS file
-import { FaBars } from 'react-icons/fa';
+import { FaBars,FaSearch
+
+ } from 'react-icons/fa';
 import { FaEnvelope } from 'react-icons/fa';
+
+import {BiSolidPlaylist} from 'react-icons/bi';
 
 import {HiUserGroup} from 'react-icons/hi';
 import{MdAdminPanelSettings} from 'react-icons/md';
+import {RiChatPrivateFill} from 'react-icons/ri';
 
 import { AiFillHome } from 'react-icons/ai';
 import { FiLogOut} from 'react-icons/fi'
@@ -46,39 +51,42 @@ const SideeNav = () => {
     {isNavOpen ? 'Home' : <AiFillHome />}
       
     </NavLink>
-    <NavLink to={'/home/Customers'} >
+
+    
+
+    <NavLink to={'/home/search'} >
        
-    {isNavOpen ? 'Customer Details' : <HiUserGroup/>}
+    {isNavOpen ? 'Search' : <FaSearch/>}
 
 
   </NavLink>
-          
-          { (
 
-            <>
-            <NavLink to={'/home/task'} >
-            {isNavOpen ? 'Manage templates' : <FaEnvelope />}
-            </NavLink>
-            <NavLink to="/home/employees" >
-            {isNavOpen ? 'Manage Employees' : <MdAdminPanelSettings/>}
-            
-            
-            
-            
-            </NavLink>
-            <NavLink to="/home/audit" >
-            {isNavOpen ? 'Audit Logs' : <SiAdguard/>}
-            
-            
-            
-            
-            </NavLink>
+  <NavLink to={'/home/Public'} >
+       
+  {isNavOpen ? 'Public' : <BiSolidPlaylist />}
 
-            </>
-          )
-          
-        
-        }
+
+
+
+</NavLink>
+
+<NavLink to={'/home/private'} >
+       
+{isNavOpen ? 'Private' : <RiChatPrivateFill/>}
+
+
+
+
+</NavLink>
+
+
+  
+
+
+
+
+
+       
 
        
           

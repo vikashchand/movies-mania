@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaEnvelope, FaTasks, FaClock, FaChartLine, FaDatabase, FaUserShield, FaMapMarkedAlt } from 'react-icons/fa';
-import { MdEmail, MdPhone } from 'react-icons/md';
+import { MdEmail, MdPhone,MdOutlineDevicesOther } from 'react-icons/md';
 import './LandingPage.css';
 
 import featureImage from '../../assets/tamil.jpg';
@@ -8,8 +8,8 @@ import featureImage from '../../assets/tamil.jpg';
 const LandingPage = () => {
   return (
     <div className="landing-page">
-      <h1>Welcome to the Tamil Nadu Police Portal</h1>
-      <p>Empowering Our Officers for Safer Communities</p>
+      <h1>Welcome to the Manas Movies Portal</h1>
+      <p>Serving entertainment with just few clicks</p>
 
       <div className="feature-container">
         <div className="feature-description">
@@ -20,8 +20,8 @@ const LandingPage = () => {
                 <FaTasks />
               </div>
               <div className="feature-details">
-                <h3>Daily Case Registration</h3>
-                <p>Effortlessly register and manage daily cases in your district. Streamline the process of recording essential information, updating case statuses, and collaborating with your team.</p>
+                <h3>Search Feature</h3>
+                <p>Effortlessly Search movies of different taste and regions.</p>
               </div>
             </li>
             <li className="feature-card">
@@ -29,8 +29,8 @@ const LandingPage = () => {
                 <FaClock />
               </div>
               <div className="feature-details">
-                <h3>Real-time Updates</h3>
-                <p>Stay informed with real-time updates on case developments. Receive notifications for critical incidents and deadlines to ensure swift action and response.</p>
+                <h3>Fast fetching</h3>
+                <p>Stay hassle free from lagging and get a premium experience in free.</p>
               </div>
             </li>
             <li className="feature-card">
@@ -38,8 +38,8 @@ const LandingPage = () => {
                 <FaChartLine />
               </div>
               <div className="feature-details">
-                <h3>Crime Statistics Analysis</h3>
-                <p>Access comprehensive crime statistics and analysis tools. Make data-driven decisions to allocate resources effectively and address emerging trends.</p>
+                <h3>Updates</h3>
+                <p>Daily upload of 10+ movies to the website in hd quality.</p>
               </div>
             </li>
             <li className="feature-card">
@@ -47,8 +47,8 @@ const LandingPage = () => {
                 <FaDatabase />
               </div>
               <div className="feature-details">
-                <h3>Database Integration</h3>
-                <p>Seamlessly integrate with a centralized database for efficient data storage and retrieval. Ensure data consistency and reliability.</p>
+                <h3>Movies recommendation</h3>
+                <p>Ai integration to suggest movies based on your type</p>
               </div>
             </li>
             <li className="feature-card">
@@ -62,11 +62,11 @@ const LandingPage = () => {
             </li>
             <li className="feature-card">
               <div className="feature-icon">
-                <FaMapMarkedAlt />
+                <MdOutlineDevicesOther/>
               </div>
               <div className="feature-details">
-                <h3>Geospatial Integration</h3>
-                <p>Integrate geospatial data to visualize crime incidents on maps. Identify crime hotspots and allocate resources strategically.</p>
+                <h3>Multi device stream</h3>
+                <p>Can stream movies on all devices.</p>
               </div>
             </li>
           </ul>
