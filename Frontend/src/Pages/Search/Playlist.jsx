@@ -8,7 +8,7 @@ const Playlist = () => {
   useEffect(() => {
     const fetchLists = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/lists');
+        const response = await axios.get('https://manasmoviebackend.vercel.app/lists');
         setLists(response.data);
       } catch (error) {
         console.error('Error fetching lists: ', error);

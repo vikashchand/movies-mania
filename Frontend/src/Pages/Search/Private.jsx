@@ -8,7 +8,7 @@ const Private = () => {
   useEffect(() => {
     const fetchLists = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/lists/private');
+        const response = await axios.get('https://manasmoviebackend.vercel.app/lists/private');
         setLists(response.data);
       } catch (error) {
         console.error('Error fetching lists: ', error);
@@ -21,7 +21,7 @@ const Private = () => {
   const togglePrivacy = async (id, currentStatus) => {
     console.log(id);
     try {
-      const response = await axios.put(`http://localhost:5000/lists/${id}/privacy`, {
+      const response = await axios.put(`https://manasmoviebackend.vercel.app/lists/${id}/privacy`, {
         isPrivate: !currentStatus
       });
       setLists(lists.map(list => list._id === id ? { ...list, isPrivate: !currentStatus } : list));
@@ -32,7 +32,7 @@ const Private = () => {
 
   const deletePlaylist = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/lists/${id}`);
+      await axios.delete(`https://manasmoviebackend.vercel.app/lists/${id}`);
       setLists(lists.filter(list => list._id !== id));
     } catch (error) {
       console.error('Error deleting playlist: ', error);

@@ -9,7 +9,7 @@ const handleSaveToList = async (movie) => {
       if (!listName) return; // If the user cancels or leaves the input empty, do nothing
   
       const { Title, Year, Type } = movie; // Extract movie details
-      const response = await axios.post('http://localhost:5000/lists', {
+      const response = await axios.post('https://manasmoviebackend.vercel.app/lists', {
         name: listName,
         movie: {
           title: Title,
